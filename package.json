@@ -1,0 +1,14 @@
+{
+    "name": "snek",
+    "version": "1.0.0",
+    "description": "",
+    "main": "snek.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "p5":"*"
+    },
+    "author": "",
+    "license": "ISC"
+}

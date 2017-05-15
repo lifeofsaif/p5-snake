@@ -1,0 +1,22 @@
+List of P5 Js functions used to make snake: 
+    
+    1. setup(): main setup function that seems to be called by p5 js
+        
+    2. draw(): main draw function called by p5 js. Called directly after setup(), the draw()
+    function continuously executes the lines of code contained inside its block until the program
+    is stopped or noLoop() is called.
+    
+    3. createCanvas(x,y): function to create the canvas. 
+    
+    4. constrain(n, low, high): function to constrain a a value within a range essentially
+    
+    5. frameRate(n): specified framerate. recommended to be used in setup
+    
+    6. keyPressed(): function that is called every time a key is pressed. 
+    heavily correlated with keyCode, which indicates the key that is pressed. 
+    
+    7. createVector(x,y,z): creates a vecor, coordinate point type thing. paired value. 
+    
+    8. dist(x1,y1,[z1],x2,y2,[z2]): returns distance between two values.
+    
+    
