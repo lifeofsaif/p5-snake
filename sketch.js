@@ -11,6 +11,8 @@ function setup() {
     canvas.parent('canvasContainer')
     s = new snake(300 - scl, 300 - scl, 0, 0, 'green')
     frameRate(framecount)
+    coinSound = loadSound('./coinSound.mp3');
+    loserSound = loadSound('./loserSound.mp3');
 }
 
 function getColor(length) {
@@ -61,9 +63,7 @@ function draw() {
             $("#allTimeHighScore").html(allTimeHighScore)
             var message = prompt("You are the winner!!");
             updateAllTimeHighScore(message, allTimeHighScore)
-        } else {
-            alert("LOSER")
-        }
+        } 
         
         createNewSnake()
     }
@@ -100,7 +100,6 @@ function createNewSnake() {
 }
 
 function killSnake() {
-    //return
     s = 0
     framecount = originalframecount
     frameRate(framecount)
