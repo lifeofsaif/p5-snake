@@ -63,7 +63,9 @@ function snake(x, y, xspeed, yspeed, color) {
         }
     }
     this.createNewApple = function () {
+        if(framecount<41)
         framecount += 2
+        
         frameRate(framecount)
         this.a = new apple(Math.floor(random(600 / scl)) * scl, Math.floor(random(600 / scl)) * scl)
         this.extendTail()
