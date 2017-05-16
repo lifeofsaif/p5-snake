@@ -7,8 +7,10 @@ var bodyParser = require('body-parser');
 var fs = require('fs')
 
 var mongoose = require('mongoose')
+var privateVariables = require('./privateVariables.json')
 
-var uri = "mongodb://heroku_2r531h7n:3bb4djifqaaftlj04i3rdshpas@ds143181.mlab.com:43181/heroku_2r531h7n"
+
+var uri = privateVariables.mongoUri
 mongoose.Promise = global.Promise
 mongoose.connect(uri);
 var db = mongoose.connection;
@@ -42,7 +44,7 @@ app.post('/', function (req, res) {
         message: req.body.message
     }
 
-    Score.findById("591aaa0f4e9a04213c056cd0", function (err, todo) {
+    Score.findById(privateVariables.scoreId, function (err, todo) {
         // Handle any possible database errors
         if (err) {
             res.status(500).send(err);
@@ -61,7 +63,7 @@ app.post('/', function (req, res) {
 })
 
 /*
-Score.findById("591aaa0f4e9a04213c056cd0", function (err, todo) {
+Score.findById(privateVariables.scoreId, function (err, todo) {
     // Handle any possible database errors
     if (err) {; //res.status(500).send(err);
     } else {
