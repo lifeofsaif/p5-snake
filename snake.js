@@ -39,9 +39,10 @@ function snake(x, y, xspeed, yspeed, color) {
         if (this.tail.length != 10)
             if(coinSound)
             coinSound.play()
-        else
+        else{
             if(finishHimSound)
             finishHimSound.play();
+        }
         this.tail.push(new tailUnit(this.location.x, this.location.y, getColor(this.tail.length)))
     }
 
