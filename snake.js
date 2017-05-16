@@ -21,8 +21,7 @@ function snake(x, y, xspeed, yspeed, color) {
             this.tail[i].update()
             if (i == 0) {
                 this.tail[i].updateLocation(this.location.x, this.location.y)
-            }
-            else {
+            } else {
                 this.tail[i].updateLocation(this.tail[i - 1].location.x, this.tail[i - 1].location.y)
             }
         }
@@ -34,15 +33,21 @@ function snake(x, y, xspeed, yspeed, color) {
         this.a.show()
     }
     this.extendTail = function () {
-        if (this.tail.length != 10) {
-            if (coinSound) {
+        if (this.tail.length == 10) {
+            if (finishHimSound) {
+                finishHimSound.play()
                 coinSound.play()
             }
-        }
-        else {
-            if (finishHimSound) {
-                finishHimSound.play();
-                console.log('gets here')
+        } else if (this.tail.length == 20) {
+            if (shallNotPassSound) {
+                shallNotPassSound.play()
+                coinSound.play()
+            }
+            framecount += 4
+            frameRate(framecount)
+        } else {
+            if (coinSound) {
+                coinSound.play()
             }
         }
         this.tail.push(new tailUnit(this.location.x, this.location.y, getColor(this.tail.length)))
@@ -60,8 +65,8 @@ function snake(x, y, xspeed, yspeed, color) {
         }
         this.getLocation = function () {
             return {
-                x: this.location.x
-                , y: this.location.y
+                x: this.location.x,
+                y: this.location.y
             }
         }
     }
@@ -73,24 +78,21 @@ function snake(x, y, xspeed, yspeed, color) {
         updateScore()
     }
     this.dir = function (keyCode) {
-            if (keyCode === DOWN_ARROW) {
-                this.speed.x = 0
-                this.speed.y = scl
-            }
-            else if (keyCode === UP_ARROW) {
-                this.speed.x = 0
-                this.speed.y = -scl
-            }
-            else if (keyCode === LEFT_ARROW) {
-                this.speed.x = -scl
-                this.speed.y = 0
-            }
-            else if (keyCode === RIGHT_ARROW) {
-                this.speed.x = scl
-                this.speed.y = 0
-            }
+        if (keyCode === DOWN_ARROW) {
+            this.speed.x = 0
+            this.speed.y = scl
+        } else if (keyCode === UP_ARROW) {
+            this.speed.x = 0
+            this.speed.y = -scl
+        } else if (keyCode === LEFT_ARROW) {
+            this.speed.x = -scl
+            this.speed.y = 0
+        } else if (keyCode === RIGHT_ARROW) {
+            this.speed.x = scl
+            this.speed.y = 0
         }
-        //apple construction 
+    }
+    //apple construction 
     function apple(x, y) {
         this.location = createVector(x, y)
         this.show = function () {

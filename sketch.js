@@ -14,6 +14,7 @@ function preload() {
         coinSound = loadSound('./sounds/coinSound.mp3');
         loserSound = loadSound('./sounds/loserSound.mp3');
         finishHimSound = loadSound('./sounds/finishHimSound.mp3')
+        shallNotPassSound = loadSound('./sounds/shallNotPassSound.mp3')
     }
 }
 
@@ -27,39 +28,39 @@ function setup() {
 function getColor(length) {
     index = length % 11
     switch (index) {
-    case 0:
-        return '#00E517'
-        break;
-    case 1:
-        return '#00E5A3'
-        break;
-    case 2:
-        return '#0099E5'
-        break;
-    case 3:
-        return '#000Ce5'
-        break;
-    case 4:
-        return '#8000E5'
-        break;
-    case 5:
-        return '#E500BC'
-        break;
-    case 6:
-        return '#E50036'
-        break;
-    case 7:
-        return '#E54F00'
-        break;
-    case 8:
-        return '#E5D400'
-        break;
-    case 9:
-        return '#6FE500'
-        break;
-    case 10:
-        return '#00E516'
-        break;
+        case 0:
+            return '#00E517'
+            break;
+        case 1:
+            return '#00E5A3'
+            break;
+        case 2:
+            return '#0099E5'
+            break;
+        case 3:
+            return '#000Ce5'
+            break;
+        case 4:
+            return '#8000E5'
+            break;
+        case 5:
+            return '#E500BC'
+            break;
+        case 6:
+            return '#E50036'
+            break;
+        case 7:
+            return '#E54F00'
+            break;
+        case 8:
+            return '#E5D400'
+            break;
+        case 9:
+            return '#6FE500'
+            break;
+        case 10:
+            return '#00E516'
+            break;
     }
     return 'black'
 }
@@ -74,16 +75,20 @@ function draw() {
             updateAllTimeHighScore(message, allTimeHighScore)
         }
         createNewSnake()
-    }
-    else {
-        if (framecount > 40) {
+    } else {
+        if (s.tail.length > 20) {
+            stroke('white')
+            background('black')
+            for (var i = 0; i < 1025; i++) {
+                line(300, 300, random(600), random(600))
+            }
+        } else if (framecount > 40) {
             stroke('white')
             background('black')
             for (var i = 0; i < 2050; i++) {
                 point(random(600), random(600))
             }
-        }
-        else {
+        } else {
             background("#fffd91")
         }
         stroke(getColor(frame))
