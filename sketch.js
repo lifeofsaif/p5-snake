@@ -7,24 +7,22 @@ var localHighScore = 0
 var allTimeHighScore
 var coinSound, loserSound, finishHimSound
 
-function preload(){
+function preload() {
     alert("sounds working on only Chrome for now :(")
-    
     var isChrome = !!window.chrome && !!window.chrome.webstore;
-    if(isChrome){
+    if (isChrome) {
         coinSound = loadSound('./sounds/coinSound.mp3');
         loserSound = loadSound('./sounds/loserSound.mp3');
-        finishHimSound = loadSound('./sounds/finishHimSound.mp3')}
+        finishHimSound = loadSound('./sounds/finishHimSound.mp3')
+        finishHimSound.play()
+    }
 }
 
-
 function setup() {
-    
     canvas = createCanvas(600, 600)
     canvas.parent('canvasContainer')
     s = new snake(300 - scl, 300 - scl, 0, 0, 'green')
     frameRate(framecount)
-    
 }
 
 function getColor(length) {
@@ -75,8 +73,7 @@ function draw() {
             $("#allTimeHighScore").html(allTimeHighScore)
             var message = prompt("You are the winner!!");
             updateAllTimeHighScore(message, allTimeHighScore)
-        } 
-        
+        }
         createNewSnake()
     }
     else {
