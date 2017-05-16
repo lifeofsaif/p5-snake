@@ -14,7 +14,6 @@ function preload() {
         coinSound = loadSound('./sounds/coinSound.mp3');
         loserSound = loadSound('./sounds/loserSound.mp3');
         finishHimSound = loadSound('./sounds/finishHimSound.mp3')
-        finishHimSound.play()
     }
 }
 
