@@ -5,15 +5,23 @@ var originalframecount = 20
 var framecount = originalframecount
 var localHighScore = 0
 var allTimeHighScore
+var coinSound, loserSound, finishHimSound
+
+function preload(){
+    alert("only really working on Chrome for now :(")
+    coinSound = loadSound('./sounds/coinSound.mp3');
+    loserSound = loadSound('./sounds/loserSound.mp3');
+    finishHimSound = loadSound('./sounds/finishHimSound.mp3')
+}
+
 
 function setup() {
+    
     canvas = createCanvas(600, 600)
     canvas.parent('canvasContainer')
     s = new snake(300 - scl, 300 - scl, 0, 0, 'green')
     frameRate(framecount)
-    coinSound = loadSound('./sounds/coinSound.mp3');
-    loserSound = loadSound('./sounds/loserSound.mp3');
-    finishHimSound = loadSound('./sounds/finishHimSound.mp3')
+    
 }
 
 function getColor(length) {

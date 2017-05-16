@@ -12,7 +12,8 @@ function snake(x, y, xspeed, yspeed, color) {
         this.location.y = constrain(this.location.y, 0, 600 - scl - 1)
         for (var i = this.tail.length - 1; i > -1; i--) {
             if (dist(this.tail[i].location.x, this.tail[i].location.y, this.location.x, this.location.y) < 1) {
-                loserSound.play()
+                if (loserSound)
+                    loserSound.play()
                 if (localHighScore == s.tail.length)
                     alert('nice')
                 else
@@ -36,8 +37,10 @@ function snake(x, y, xspeed, yspeed, color) {
     }
     this.extendTail = function () {
         if (this.tail.length != 10)
+            if(coinSound)
             coinSound.play()
         else
+            if(finishHimSound)
             finishHimSound.play();
         this.tail.push(new tailUnit(this.location.x, this.location.y, getColor(this.tail.length)))
     }
