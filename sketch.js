@@ -11,8 +11,9 @@ function setup() {
     canvas.parent('canvasContainer')
     s = new snake(300 - scl, 300 - scl, 0, 0, 'green')
     frameRate(framecount)
-    coinSound = loadSound('./coinSound.mp3');
-    loserSound = loadSound('./loserSound.mp3');
+    coinSound = loadSound('./sounds/coinSound.mp3');
+    loserSound = loadSound('./sounds/loserSound.mp3');
+    finishHimSound = loadSound('./sounds/finishHimSound.mp3')
 }
 
 function getColor(length) {

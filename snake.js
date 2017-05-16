@@ -13,7 +13,7 @@ function snake(x, y, xspeed, yspeed, color) {
         for (var i = this.tail.length - 1; i > -1; i--) {
             if (dist(this.tail[i].location.x, this.tail[i].location.y, this.location.x, this.location.y) < 1) {
                 loserSound.play()
-                if(localHighScore==s.tail.length)
+                if (localHighScore == s.tail.length)
                     alert('nice')
                 else
                     alert('LOSER')
@@ -35,7 +35,10 @@ function snake(x, y, xspeed, yspeed, color) {
         this.a.show()
     }
     this.extendTail = function () {
-        coinSound.play()
+        if (this.tail.length != 10)
+            coinSound.play()
+        else
+            finishHimSound.play();
         this.tail.push(new tailUnit(this.location.x, this.location.y, getColor(this.tail.length)))
     }
 
