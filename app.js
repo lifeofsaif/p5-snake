@@ -13,6 +13,7 @@ app.get('/api/trophies', function (req, res) {
     res.json(require('./trophy.json'))
 })
 app.post('/', function (req, res) {
+    console.log(req.body)
     fs.writeFile("./trophy.json", JSON.stringify({
         score: "" + req.body.score + ""
         , message: req.body.message
