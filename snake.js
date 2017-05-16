@@ -13,8 +13,8 @@ function snake(x, y, xspeed, yspeed, color) {
         for (var i = this.tail.length - 1; i > -1; i--) {
             if (dist(this.tail[i].location.x, this.tail[i].location.y, this.location.x, this.location.y) < 1) {
                 if (loserSound) loserSound.play()
-                if (localHighScore < s.tail.length) alert('nice')
-                else alert('LOSER')
+                if (localHighScore < allTimeHighScore) alert('LOSER')
+                
                 killSnake()
             }
             if (dist(this.tail[i].location.x, this.tail[i].location.y, this.a.location.x, this.a.location.y) < 1) this.createNewApple()
