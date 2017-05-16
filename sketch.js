@@ -8,10 +8,13 @@ var allTimeHighScore
 var coinSound, loserSound, finishHimSound
 
 function preload(){
-    alert("only really working on Chrome for now :(")
-    coinSound = loadSound('./sounds/coinSound.mp3');
-    loserSound = loadSound('./sounds/loserSound.mp3');
-    finishHimSound = loadSound('./sounds/finishHimSound.mp3')
+    alert("sounds working on only Chrome for now :(")
+    
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+    if(isChrome){
+        coinSound = loadSound('./sounds/coinSound.mp3');
+        loserSound = loadSound('./sounds/loserSound.mp3');
+        finishHimSound = loadSound('./sounds/finishHimSound.mp3')}
 }
 
 
