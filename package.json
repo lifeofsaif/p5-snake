@@ -9,7 +9,10 @@
     },
     "dependencies": {
         "p5":"*",
-        "express":"*"
+        "express":"*",
+        "jquery":"*",
+        "body-parser":"*"
+         
     },
     "author": "",
     "license": "ISC"
