@@ -143,8 +143,8 @@ function scare(){
         spookySound.play();
     killSnake();
     //play soundbyte
-    $("body").html("<img id='spooky' src='./scaryFace.jpg'></img>")
-    
+    $("#everything").html("")
+    $("#spooky").css( "display", "" );
     $("#spooky").css( "width", $(window).width() );
     $("#spooky").css( "height", $(window).height() );
     scared = true; 
