@@ -5,6 +5,7 @@ function snake(x, y, xspeed, yspeed, color) {
     this.a = this.a = new apple(Math.floor(random(600 / scl)) * scl, Math.floor(random(600 / scl)) * scl)
     this.tLength = 0
     this.tail = []
+
     this.update = function () {
         this.location.x += this.speed.x
         this.location.y += this.speed.y
@@ -14,8 +15,8 @@ function snake(x, y, xspeed, yspeed, color) {
             if (dist(this.tail[i].location.x, this.tail[i].location.y, this.location.x, this.location.y) < 1) {
                 if (loserSound) loserSound.play()
                 if (localHighScore < allTimeHighScore) alert('LOSER')
-                
-                killSnake()
+                killSnake();
+
             }
             if (dist(this.tail[i].location.x, this.tail[i].location.y, this.a.location.x, this.a.location.y) < 1) this.createNewApple()
             this.tail[i].update()
@@ -33,23 +34,30 @@ function snake(x, y, xspeed, yspeed, color) {
         this.a.show()
     }
     this.extendTail = function () {
-        if (this.tail.length == 10) {
+        if (this.tail.length == 2) {
             if (finishHimSound) {
                 finishHimSound.play()
                 coinSound.play()
+                bgName = "kombat"
             }
-        } else if (this.tail.length == 20) {
+        } else if (this.tail.length == 4) {
             if (shallNotPassSound) {
                 shallNotPassSound.play()
                 coinSound.play()
+                bgName = "gandalf"
             }
             framecount += 4
             frameRate(framecount)
+        } else if (this.tail.length == 6) {
+            
+            scare(); 
         } else {
             if (coinSound) {
                 coinSound.play()
             }
         }
+
+
         this.tail.push(new tailUnit(this.location.x, this.location.y, getColor(this.tail.length)))
     }
 
@@ -76,6 +84,7 @@ function snake(x, y, xspeed, yspeed, color) {
         this.a = new apple(Math.floor(random(600 / scl)) * scl, Math.floor(random(600 / scl)) * scl)
         this.extendTail()
         updateScore()
+
     }
     this.dir = function (keyCode) {
         if (keyCode === DOWN_ARROW) {

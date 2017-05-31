@@ -6,7 +6,15 @@ var framecount = originalframecount
 var localHighScore = 0
 var allTimeHighScore
 var coinSound, loserSound, finishHimSound
+var scared = false
 
+var bgName = 'standard'
+
+/*
+ * P5.js function that is only called once, prior to loading the setup 
+ * This is used to load all these variables that may take a little bit longer to load
+ * i am using it primarily to deal with loading sounds
+ */
 function preload() {
     alert("sounds working on only Chrome for now :(")
     var isChrome = !!window.chrome && !!window.chrome.webstore;
@@ -15,9 +23,16 @@ function preload() {
         loserSound = loadSound('./sounds/loserSound.mp3');
         finishHimSound = loadSound('./sounds/finishHimSound.mp3')
         shallNotPassSound = loadSound('./sounds/shallNotPassSound.mp3')
+        spookySound = loadSound('./sounds/spooky.mp3')
     }
 }
 
+
+/*
+ * P5.js function that is only called once, prior to loading the setup 
+ * This is used to load all these variables that may take a little bit longer to load
+ * i am using it primarily to deal with loading sounds
+ */
 function setup() {
     canvas = createCanvas(600, 600)
     canvas.parent('canvasContainer')
@@ -25,6 +40,11 @@ function setup() {
     frameRate(framecount)
 }
 
+/* 
+ *  function to get the color of the tail based on the length pf the tail 
+ *  creates a rainbow effect 
+ * 
+ */
 function getColor(length) {
     index = length % 11
     switch (index) {
@@ -66,6 +86,7 @@ function getColor(length) {
 }
 
 function draw() {
+    if(!scared)
     if (!s) {
         background("#fffd91")
         if (localHighScore > allTimeHighScore) {
@@ -76,21 +97,29 @@ function draw() {
         }
         createNewSnake()
     } else {
-        if (s.tail.length > 20) {
+        
+        if (bgName == 'gandalf') {
             stroke('white')
             background('black')
             for (var i = 0; i < 1025; i++) {
                 line(300, 300, random(600), random(600))
             }
-        } else if (framecount > 40) {
+        } else if (bgName == 'kombat') {
             stroke('white')
             background('black')
             for (var i = 0; i < 2050; i++) {
                 point(random(600), random(600))
             }
         } else {
-            background("#fffd91")
+            //background("#fffd91")
+            background("#191919")
+            
+            
         }
+        
+        
+        
+        
         stroke(getColor(frame))
         line(599, 0, 599, 599);
         line(0, 0, 0, 600)
@@ -98,11 +127,25 @@ function draw() {
         line(0, 599, 599, 599)
         if (s) s.update()
         frame++
+    
+    
     }
 }
 
 function mousePressed() {
     createNewSnake()
+}
+
+
+function scare(){
+    spookySound.play();
+    killSnake();
+    //play soundbyte
+    $("body").html("<img id='spooky' src='./scaryFace.jpg'></img>")
+    
+    $("#spooky").css( "width", $(window).width() );
+    $("#spooky").css( "height", $(window).height() );
+    scared = true; 
 }
 
 function createNewSnake() {
@@ -116,9 +159,13 @@ function killSnake() {
     s = 0
     framecount = originalframecount
     frameRate(framecount)
+    bgName = "standard"
 }
 
 function keyPressed() {
+    if(keyCode==68)
+        scare();
+    
     if (s) s.dir(keyCode)
 }
 
