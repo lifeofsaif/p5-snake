@@ -7,6 +7,7 @@ var localHighScore = 0
 var allTimeHighScore
 var coinSound, loserSound, finishHimSound
 var scared = false
+var isChrome = !!window.chrome && !!window.chrome.webstore;
 
 var bgName = 'standard'
 
@@ -17,7 +18,7 @@ var bgName = 'standard'
  */
 function preload() {
     alert("sounds working on only Chrome for now :(")
-    var isChrome = !!window.chrome && !!window.chrome.webstore;
+    
     if (isChrome) {
         coinSound = loadSound('./sounds/coinSound.mp3');
         loserSound = loadSound('./sounds/loserSound.mp3');
@@ -138,7 +139,8 @@ function mousePressed() {
 
 
 function scare(){
-    spookySound.play();
+    if(isChrome)
+        spookySound.play();
     killSnake();
     //play soundbyte
     $("body").html("<img id='spooky' src='./scaryFace.jpg'></img>")
