@@ -49,7 +49,6 @@ function snake(x, y, xspeed, yspeed, color) {
             framecount += 4
             frameRate(framecount)
         } else if (this.tail.length == 6) {
-            
             scare(); 
         } else {
             if (coinSound) {

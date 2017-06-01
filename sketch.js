@@ -10,6 +10,7 @@ var scared = false
 var isChrome = !!window.chrome && !!window.chrome.webstore;
 
 var bgName = 'standard'
+var messageSet = false;
 
 /*
  * P5.js function that is only called once, prior to loading the setup 
@@ -18,7 +19,7 @@ var bgName = 'standard'
  */
 function preload() {
     alert("sounds working on only Chrome for now :(")
-    
+
     if (isChrome) {
         coinSound = loadSound('./sounds/coinSound.mp3');
         loserSound = loadSound('./sounds/loserSound.mp3');
@@ -87,49 +88,51 @@ function getColor(length) {
 }
 
 function draw() {
-    if(!scared)
-    if (!s) {
-        background("#fffd91")
-        if (localHighScore > allTimeHighScore) {
-            allTimeHighScore = localHighScore
-            $("#allTimeHighScore").html(allTimeHighScore)
-            var message = prompt("You are the winner!!");
-            updateAllTimeHighScore(message, allTimeHighScore)
-        }
-        createNewSnake()
-    } else {
-        
-        if (bgName == 'gandalf') {
-            stroke('white')
-            background('black')
-            for (var i = 0; i < 1025; i++) {
-                line(300, 300, random(600), random(600))
+    if (!scared) {
+        if (!s) {
+            background("#fffd91")
+            if (localHighScore > allTimeHighScore) {
+                allTimeHighScore = localHighScore
+                $("#allTimeHighScore").html(allTimeHighScore)
+                var message = prompt("You are the winner!!");
+                updateAllTimeHighScore(message, allTimeHighScore)
             }
-        } else if (bgName == 'kombat') {
-            stroke('white')
-            background('black')
-            for (var i = 0; i < 2050; i++) {
-                point(random(600), random(600))
-            }
+            createNewSnake()
         } else {
-            //background("#fffd91")
-            background("#191919")
-            
-            
+
+            if (bgName == 'gandalf') {
+                stroke('white')
+                background('black')
+                for (var i = 0; i < 1025; i++) {
+                    line(300, 300, random(600), random(600))
+                }
+            } else if (bgName == 'kombat') {
+                stroke('white')
+                background('black')
+                for (var i = 0; i < 2050; i++) {
+                    point(random(600), random(600))
+                }
+            } else {
+                //background("#fffd91")
+                background("#191919")
+            }
+            stroke(getColor(frame))
+            line(599, 0, 599, 599);
+            line(0, 0, 0, 600)
+            line(0, 0, 600, 0)
+            line(0, 599, 599, 599)
+            if (s) s.update()
+            frame++
         }
-        
-        
-        
-        
-        stroke(getColor(frame))
-        line(599, 0, 599, 599);
-        line(0, 0, 0, 600)
-        line(0, 0, 600, 0)
-        line(0, 599, 599, 599)
-        if (s) s.update()
-        frame++
-    
-    
+    } else {
+        if (!messageSet && spookySound && !(spookySound.isPlaying())) {
+            console.log('now')
+            
+            updateAllTimeHighScore(prompt("Leave a message :)"), 8)
+            messageSet = true; 
+        }
+
+
     }
 }
 
@@ -138,16 +141,21 @@ function mousePressed() {
 }
 
 
-function scare(){
-    if(isChrome)
+function scare() {
+    if (isChrome)
         spookySound.play();
     killSnake();
-    //play soundbyte
+
+
+
     $("#everything").html("")
-    $("#spooky").css( "display", "" );
-    $("#spooky").css( "width", $(window).width() );
-    $("#spooky").css( "height", $(window).height() );
-    scared = true; 
+    $("#spooky").css("display", "");
+    $("#spooky").css("width", $(window).width());
+    $("#spooky").css("height", $(window).height());
+
+
+
+    scared = true;
 }
 
 function createNewSnake() {
@@ -165,9 +173,9 @@ function killSnake() {
 }
 
 function keyPressed() {
-    if(keyCode==68)
+    if (keyCode == 68)
         scare();
-    
+
     if (s) s.dir(keyCode)
 }
 
