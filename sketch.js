@@ -189,8 +189,9 @@ function apple() {
 }
 
 function updateScore() {
-    $("#scoreNumber").html(s.tail.length)
-    if (s.tail.length > localHighScore) {
+    
+    if (!scared && s.tail.length > localHighScore) {
+        $("#scoreNumber").html(s.tail.length)
         localHighScore = s.tail.length
         $("#localHighScore").html(s.tail.length)
     }
