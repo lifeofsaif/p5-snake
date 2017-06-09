@@ -142,6 +142,7 @@ function mousePressed() {
 
 
 function scare() {
+    //return; 
     if (isChrome)
         spookySound.play();
     killSnake();
